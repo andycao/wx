@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<title>“店内wifi”可复现问题</title>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<style>
+		body, input, select, textarea, button, .ui-btn {
+			font-family: "Microsoft YaHei";
+		}
+
+		.mhide {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+<div data-role="page" data-theme="a" id="page1">
+
+	<div data-theme="b" data-role="header">
+		<h5>
+			店内wifi可复现问题
+		</h5>
+	</div>
+
+	<div data-role="content">
+		<form id="myform" method='post'>
+			<fieldset data-role="controlgroup">
+				<legend>店铺名称</legend>
+				<input type="text" name="shopname" value="" placeholder="店铺名称"/>
+			</fieldset>
+			<fieldset data-role="controlgroup">
+				<legend>店内带宽</legend>
+				<select name="bandwidth">
+					<option value="请选择">请选择</option>
+					<option value="普通2M">普通2M</option>
+					<option value="普通4M">普通4M</option>
+					<option value="普通6M">普通6M</option>
+					<option value="普通8M">普通8M</option>
+					<option value="普通12M">普通12M</option>
+					<option value="普通20M">普通20M</option>
+					<option value="普通30M">普通30M</option>
+					<option value="普通50M">普通50M</option>
+					<option value="普通100M">普通100M</option>
+					<option value="普通200M">普通200M</option>
+					<option value="光纤2M">光纤2M</option>
+					<option value="光纤4M">光纤4M</option>
+					<option value="光纤6M">光纤6M</option>
+					<option value="光纤8M">光纤8M</option>
+					<option value="光纤12M">光纤12M</option>
+					<option value="光纤20M">光纤20M</option>
+					<option value="光纤30M">光纤30M</option>
+					<option value="光纤50M">光纤50M</option>
+					<option value="光纤100M">光纤100M</option>
+					<option value="光纤200M">光纤200M</option>
+					<option id="bandOtherO" value="other">其它</option>
+				</select>
+				<input class="bandOther" type="text" name="bandOther" placeholder="其他请输入"/>
+			</fieldset>
+			<hr/>
+			<fieldset data-role="controlgroup">
+				<legend>宽带运营商</legend>
+				<input type="radio" name="network" id="q3-a1" value="中国联通">
+				<label for="q3-a1">中国联通</label>
+				<input type="radio" name="network" id="q3-a2" value="中国电信">
+				<label for="q3-a2">中国电信</label>
+				<input type="radio" name="network" id="q3-a3" value="中国移动">
+				<label for="q3-a3">中国移动</label>
+				<input type="radio" name="network" id="q3-a4" value="铁通宽带">
+				<label for="q3-a4">铁通宽带</label>
+				<input type="radio" name="network" id="q3-a5" value="铁通宽带">
+				<label for="q3-a5">长城宽带</label>
+				<input type="radio" name="network" id="q3_a6" value="other">
+				<label for="q3_a6">其它</label>
+				<input class="networkOther" type="text" name="networkOther" placeholder="其他请输入"/>
+			</fieldset>
+			<hr/>
+			<fieldset data-role="controlgroup" data-iconpos="right">
+				<legend>出现问题的网络</legend>
+				<input type="radio" name="hg" id="q4-a1" value="主网络">
+				<label for="q4-a1">主网络</label>
+				<input type="radio" name="hg" id="q4-a2" value="客网络">
+				<label for="q4-a2">客网络</label>
+				<input type="radio" name="hg" id="q4-a3" value="两者都有">
+				<label for="q4-a3">两者都有</label>
+			</fieldset>
+			<hr/>
+			<fieldset data-role="controlgroup">
+				<legend>出现问题时店内上网人数</legend>
+				<input type="number" name="number" placeholder="请输入人数"/>
+			</fieldset>
+			<fieldset data-role="controlgroup">
+				<legend>wi-beacon固件版本号</legend>
+				<input type="text" name="deviceVer" placeholder="请输入版本号"/>
+			</fieldset>
+			<fieldset data-role="controlgroup">
+				<legend>手机品牌及型号</legend>
+				<input type="text" name="phoneModel" placeholder="请输入手机品牌及型号"/>
+			</fieldset>
+			<fieldset data-role="controlgroup">
+				<legend>店内app版本号</legend>
+				<input type="text" name="appVer" placeholder="请输入版本号"/>
+			</fieldset>
+			<fieldset data-role="controlgroup" data-iconpos="right">
+				<legend>问题描述</legend>
+				<textarea name="question" id="question" cols="30" rows="10" placeholder="请详细描述问题"></textarea>
+			</fieldset>
+
+			<input id="ok" type='button' value="提交问题" data-theme="b" />
+		</form>
+	</div>
+</div>
+<script>
+
+	var openApi = function (objPrm, successCallback, errorCallback, completeCallback) {
+		$.ajax({
+			type: 'get',
+			url: 'http://cusflo.com/api/base/api_open.php',
+			data: objPrm,
+			dataType: 'jsonp',
+			jsonp: "callback",
+			success: function (data) {
+				if (successCallback) {
+					successCallback(data);
+				}
+			},
+			error: function (data) {
+				if (errorCallback) {
+					errorCallback(data);
+				}
+			},
+			complete: function (data) {
+				if (completeCallback) {
+					completeCallback(data);
+				}
+			}
+		});
+	};
+
+	$("#ok").click(function () {
+		var f = document.getElementById('myform');
+
+		var shopname = f.shopname.value;
+
+		var band = f.bandwidth.value;
+		if( band === 'other'){
+			band = f.bandOther.value;
+		}
+		var net = f.network.value;
+		if( net === 'other'){
+			net = f.networkOther.value;
+		}
+		var args = {
+			api: 307,
+			shopname: shopname,
+			bandwidth: band,
+			network: net,
+			hg: f.hg.value,
+			number: f.number.value,
+			question: f.question.value,
+			deviceVer: f.deviceVer.value,
+			phoneModel: f.phoneModel.value,
+			appVer: f.appVer.value
+		};
+
+		console.log(args);
+
+
+		if( shopname ) {
+			openApi(args, function (json) {
+
+				alert('提交成功');
+				f.reset();
+				history.back();
+			}, null, null);
+		} else {
+			alert('店铺名称是必填项');
+		}
+	});
+
+</script>
+</body>
+</html>

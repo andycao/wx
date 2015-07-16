@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>店内wifi - 反馈提交</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<style>
+		body{
+			background-color:#eee;
+			font-family: 'Microsoft Yahei';
+		}
+		hr{
+			border-top:1px solid #888;
+		}
+		.btn-cusflo{
+			color:#000;
+			background-color:#ffc000;
+			border-color:#ffce00;
+			width:91%;
+		}
+		.myform{
+			display:inline-table;
+			width:68%;
+		}
+		.my-label{
+			min-width:6.4em;
+		}
+
+		.mycenter{
+			text-align:center;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+<h1>提交成功</h1>
+<hr>
+<form role="form" class="form-horizontal" action="http://cusflo.com/api/feedback.php" method="post">
+
+	<div class="form-group my-formgroup">
+		<label for="nick" class="col-sm-2 control-label my-label">称呼</label>
+		<div class="col-sm-10 myform">
+			<input id="nick" class="form-control" type="text" name="nick" value="您怎么称呼" disabled/></div>
+	</div>
+
+	<div class="form-group">
+		<label for="mobile" class="col-sm-2 control-label my-label">联系方式</label>
+		<div class="col-sm-10 myform">
+			<input id="mobile" class="form-control" type="tel" name="mobile" value="请输入您的联系电话" disabled/></div>
+	</div>
+
+	<div class="form-group">
+		<label for="company" class="col-sm-2 control-label my-label">店铺名称</label>
+		<div class="col-sm-10 myform">
+			<input id="company" class="form-control" type="text" name="company" value="您的店铺叫什么" disabled/></div>
+	</div>
+
+	<div class="form-group">
+		<label for="address" class="col-sm-2 control-label my-label">店铺地址</label>
+		<div class="col-sm-10 myform">
+			<input id="address" class="form-control" type="text" name="address" value="您的店在什么位置" disabled/></div>
+	</div>
+
+	<div class="form-group">
+		<label for="desc" class="col-sm-2 control-label">问题描述</label>
+		<div class="col-sm-10">
+			<textarea id="desc" class="form-control" rows="4" name="desc" disabled>请尽量详细描述故障信息，以便我们可以更准确地帮您提供解决方案</textarea>
+		</div>
+	</div>
+	<div class="form-group">
+	<label for="desc" class="col-sm-2 control-label">图片</label>
+		<div class=" mycenter">
+			<img src="11.jpg" alt="您的图片" />
+		</div>
+	</div>
+	<div class="form-group mycenter">
+			<button id="myclose" type="button" class="btn btn-cusflo">返回公众号</button>
+	</div>
+
+</form>
+</div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script>
+
+	$('#myclose').click(function(){
+		wx.closeWindow();
+	});
+
+</script>
+</body>
+</html>

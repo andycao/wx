@@ -1,0 +1,35 @@
+body{
+    background-color:#eee;
+    font-family: 'Microsoft Yahei';
+}
+hr{
+    border-top:1px solid #888;
+}
+.btn-cusflo{
+    color:#000;
+    background-color:#ffc000;
+    border-color:#ffce00;
+    width:91%;
+}
+.myform{
+    display:inline-table;
+    width:68%;
+}
+.my-label{
+    min-width:6.6em;
+}
+
+.btn-upload{
+    width:91%;
+    margin:0 auto;
+}
+.mycenter{
+    text-align:center;
+}
+
+#file{
+    display:none;
+}
+.hide{
+    display:none;
+}
