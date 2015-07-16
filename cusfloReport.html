@@ -4,7 +4,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="content-type" content="text/html;charset=utf-8">
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-	<title>“店内wifi”可复现问题</title>
+	<title>问题反馈</title>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
@@ -16,6 +16,9 @@
 		.mhide {
 			display: none;
 		}
+		#question{
+			min-height:100px;
+		}
 	</style>
 </head>
 <body>
@@ -23,15 +26,19 @@
 
 	<div data-theme="b" data-role="header">
 		<h5>
-			店内wifi可复现问题
+			问题反馈
 		</h5>
 	</div>
 
 	<div data-role="content">
 		<form id="myform" method='post'>
 			<fieldset data-role="controlgroup">
-				<legend>店铺名称</legend>
+				<legend>店铺名称*</legend>
 				<input type="text" name="shopname" value="" placeholder="店铺名称"/>
+			</fieldset>
+			<fieldset data-role="controlgroup">
+				<legend>联系方式</legend>
+				<input type="number" name="mobile" value="" placeholder="联系电话" />
 			</fieldset>
 			<fieldset data-role="controlgroup">
 				<legend>店内带宽</legend>
@@ -107,7 +114,7 @@
 			</fieldset>
 			<fieldset data-role="controlgroup" data-iconpos="right">
 				<legend>问题描述</legend>
-				<textarea name="question" id="question" cols="30" rows="10" placeholder="请详细描述问题"></textarea>
+				<textarea name="question" id="question" cols="30" rows="10" placeholder="请尽量详细描述故障信息，以便我们可以更准确地帮您提供解决方案"></textarea>
 			</fieldset>
 
 			<input id="ok" type='button' value="提交问题" data-theme="b" />
@@ -115,7 +122,6 @@
 	</div>
 </div>
 <script>
-
 	var openApi = function (objPrm, successCallback, errorCallback, completeCallback) {
 		$.ajax({
 			type: 'get',
@@ -164,11 +170,11 @@
 			question: f.question.value,
 			deviceVer: f.deviceVer.value,
 			phoneModel: f.phoneModel.value,
-			appVer: f.appVer.value
+			appVer: f.appVer.value,
+			mobile: f.mobile.value
 		};
 
 		console.log(args);
-
 
 		if( shopname ) {
 			openApi(args, function (json) {
