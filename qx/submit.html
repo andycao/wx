@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>店内wifi - 七夕秀爱</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="wx.css" />
+
+</head>
+<body>
+<div id="main" class="container">
+<h1>七夕秀爱</h1>
+	<p>7夕全城热恋，征集情侣活动，帮你免费上头条！</p>
+<hr>
+
+<form id="myform" role="form" class="form-horizontal" action="http://cusflo.com/api/feedback.php" method="post" enctype="multipart/form-data">
+
+	<div class="form-group my-formgroup">
+		<label for="nick" class="col-sm-2 control-label my-label">昵称*</label>
+		<div class="col-sm-10 myform">
+			<input id="nick" class="form-control" type="text" name="nick" placeholder="您怎么称呼"/></div>
+	</div>
+
+	<div class="form-group">
+		<label for="mobile" class="col-sm-2 control-label my-label">手机*</label>
+		<div class="col-sm-10 myform">
+			<input id="mobile" class="form-control" type="tel" name="mobile" placeholder="请输入您的手机号"/></div>
+	</div>
+
+	<div class="form-group">
+		<label for="desc" class="col-sm-2 control-label">爱的表达*</label>
+		<div class="col-sm-10">
+			<textarea id="desc" class="form-control" rows="4" name="desc" placeholder="爱的表达，可以是：我为你读一首浪漫的诗。
+爱的表达，也可以是：我为你做一顿丰盛的饭菜，喝着红酒，烛光晚餐
+"></textarea>
+		</div>
+	</div>
+	<div class="form-group mycenter">
+		<button id="upload" type="button" class="btn btn-default btn-upload">上传图片</button>
+		<input type="file" id="file" name="file" />
+	</div>
+	<div class="form-group mycenter">
+		<button id="ok" type="button" class="btn btn-cusflo">提交</button>
+	</div>
+	<div class="mycenter">
+		<img id="picShow" src="" alt=""/>
+	</div>
+</form>
+
+</div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="image-up.js"></script>
+<script src="feed.js"></script>
+</body>
+</html>
