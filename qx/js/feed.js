@@ -69,10 +69,6 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#success").click(function(){
-		history.back();
-	});
-
 		//更改图片
 		$('#file').change(function(){
 

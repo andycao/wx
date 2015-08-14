@@ -1,5 +1,9 @@
 body{
-    background-color:#FFECF5;
+    color:#fff;
+    background:url("../images/bg.jpg");
+    background-repeat: repeat-y;
+    background-attachment: fixed !important;
+    background-size: cover !important;
     font-family: MingLiU, 'Microsoft Yahei';
 }
 hr{
@@ -9,8 +13,22 @@ label{
     font-weight:500;
 }
 #main{
-    margin-bottom:2em;
+    margin:3em auto;
 }
+
+div.img-head{
+    position:relative;
+}
+#ce{
+    position:absolute;
+    top:0;
+    opacity: .7;
+    left:0;
+}
+div.img-head img{
+    width:100%;
+}
+
 .btn-cusflo{
     color:#000;
     background-color:#ffc000;
