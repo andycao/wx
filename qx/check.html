@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+	<meta charset="UTF-8">
+	<title>店内wifi - 七夕秀爱</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<style>
+		#cardList .card img{
+			display:inline-block;
+			max-width:70%;
+		}
+		.card{
+			margin:1em auto;
+			background-color: #fef;
+			border-radius: 1em;
+			padding: 1em;
+		}
+		img:hover{
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+<div id="main" class="container">
+	<h1>七夕秀爱</h1>
+	<p class="line">审核页面
+		<button id="waitList" class="btn btn-primary" >待审核</button>
+		<button id="passedList" class="btn btn-success" >通过列表</button>
+		<!--<button id="rejectedList" class="btn btn-danger" >未通过列表</button>-->
+	</p>
+	<hr>
+	<div id="cardList">
+	</div>
+</div>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+	var openApi = function (objPrm, successCallback, errorCallback, completeCallback) {
+		$.ajax({
+			type: 'get',
+			url: 'http://cusflo.com/api/base/api_open.php',
+			data: objPrm,
+			dataType: 'jsonp',
+			jsonp: "callback",
+			success: function (data) {
+				if (successCallback) {
+					successCallback(data);
+				}
+			},
+			error: function (data) {
+				if (errorCallback) {
+					errorCallback(data);
+				}
+			},
+			complete: function (data) {
+				if (completeCallback) {
+					completeCallback(data);
+				}
+			}
+		});
+	};
+
+	function apiError(json){
+		console.error('api error:');
+		console.error(json);
+	}
+	function apiComplete(json){
+	}
+
+	(function($){
+		$("#waitList").click(function(){
+			openApi({
+				api : "309"
+			},function(json){
+				console.log("309");
+				console.log(json);
+				addList(json.data);
+			},apiError,apiComplete);
+		});
+
+		$("#passedList").click(function(){
+			openApi({
+				api : "311"
+			},function(json){
+				console.log("311");
+				console.log(json);
+				addListNoButton(json.data);
+			},apiError,apiComplete);
+		});
+
+		$("#rejectedList").click(function(){
+			openApi({
+				api : "309"
+			},function(json){
+				console.log("309");
+				console.log(json);
+				addListNoButton(json.data);
+			},apiError,apiComplete);
+		});
+
+		$("#waitList").trigger('click');
+	})(jQuery);
+
+	function addListNoButton(list){
+		$("#cardList").empty();
+
+		list.forEach(function(entry,index){
+			var html =
+				'<div class="card row">'+
+				'<div class="col-md-4">'+
+				'<img src="' + entry.imgurl + '" alt=""/>'+
+				'</div>'+
+				'<div class="col-md-4">'+
+				'<p class="desc">' + entry.desc + '</p>'+
+				'</div>'+
+				'</div>';
+
+			$("#cardList").append(html);
+		});
+	}
+
+	function addList(list){
+		//empty
+		$("#cardList").empty();
+
+		list.forEach(function(entry,index){
+			var html =
+				'<div class="card row">'+
+				'<div class="col-md-4">'+
+			'<img src="' + entry.imgurl + '" alt=""/>'+
+			'</div>'+
+			'<div class="col-md-4">'+
+			'<p class="desc">' + entry.desc + '</p>'+
+			'</div>'+
+			'<div class="col-md-2" id="' + entry.id +'">'+
+			'<button class="pass btn btn-primary btn-lg">通过</button>&nbsp;'+
+			'<button class="reject btn btn-danger">拒绝</button>'+
+			'</div>'+
+			'</div>';
+
+			$("#cardList").append(html);
+		});
+
+		appleFunction();
+
+	}
+	function appleFunction(){
+
+		//pass
+		$(".pass").unbind("click").click(function(){
+			var cont = $(this).parent();
+			var id = $(this).parent().attr("id");
+
+			openApi({
+				api : "310",
+				id : id,
+				type : "yes"
+			},function(){
+				console.log(id + 'passed');
+				cont.html("已通过");
+
+			},apiError,apiComplete);
+		});
+
+		//reject
+		$(".reject").unbind("click").click(function(){
+
+			var conf = confirm("确认拒绝吗?");
+			if( !conf ){
+				return false;
+			}
+			var cont = $(this).parent();
+			var id = $(this).parent().attr("id");
+
+			openApi({
+				api : "310",
+				id : id,
+				type : "no"
+			},function(){
+				console.log(id + 'not passed');
+				cont.html("已拒绝");
+			},apiError,apiComplete);
+		});
+
+		//img
+		$('img').unbind('click').click(function(){
+			var url = $(this).attr("src");
+
+			window.open(url);
+		});
+	}
+//	setInterval(function(){
+//		location.reload();
+//	}, 20000)
+</script>
+</body>
+</html>

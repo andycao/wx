@@ -1,0 +1,89 @@
+body{
+    color:#fff;
+    background:url("../images/bg.jpg");
+    background-repeat: repeat-y;
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    font-family: MingLiU, 'Microsoft Yahei';
+
+}
+hr{
+    border-top:1px solid #888;
+}
+a:focus{
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:none;
+}
+label{
+    font-weight:500;
+}
+#main{
+    margin:3em auto;
+}
+
+div.img-head{
+    position:relative;
+}
+#ce{
+    position:absolute;
+    top:0;
+    opacity: .7;
+    left:0;
+}
+div.img-head img{
+    width:100%;
+}
+
+.my-label{
+    min-width:6.6em;
+}
+.myinput{
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid#fff;
+    color:#fff;
+    margin-bottom:2em;
+    box-shadow:none;
+}
+
+.form-control:focus{
+}
+.uploadTag{
+    margin-top:3em;
+}
+#upload img{
+    width:4em;
+}
+.mycenter{
+    text-align:center;
+}
+
+#file{
+    display:none;
+}
+.hide{
+    display:none;
+}
+#picShow{
+    width:100%;
+    display:none;
+}
+
+#orderLine{
+    margin-top:.3em;
+    width:80%;
+}
+.line{
+    margin: 3em auto;
+    text-align: center;
+}
+#ok{
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,.2);
+    padding: .6em 6.6em;
+}

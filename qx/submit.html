@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+	<title>店内wifi - 七夕秀爱</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/wx.css" />
+
+</head>
+<body>
+<div class="img-head">
+	<img src="images/head.png" alt=""/>
+	<img id="ce" src="images/CE.png" alt=""/>
+</div>
+
+<div id="main" class="container">
+<form id="myform" role="form" class="form-horizontal" method="post" enctype="multipart/form-data" onsubmit="submitForm();">
+
+	<div class="row">
+	<div class="col-xs-2">
+		<img id="orderLine" src="images/line.png" alt=""/>
+	</div>
+	<div class="col-xs-10">
+		<label for="nick" class="my-label ">输入昵称</label>
+		<input id="nick" class="myinput form-control" type="text" name="nick" placeholder="您怎么称呼"/>
+		<label for="mobile" class="my-label">输入手机</label>
+		<input id="mobile" class="myinput form-control" type="tel" name="mobile" placeholder="请输入您的手机号"/>
+		<label for="desc" class="control-label">爱的表达</label>
+		<textarea id="desc" class="myinput form-control" rows="2" name="desc" placeholder="请输入爱情宣言，不超过50个字"></textarea>
+		<p class="uploadTag">上传图片</p>
+		<a id="upload">
+			<img src="images/plus.png" alt=""/>
+		</a>
+		<input type="file" id="file" name="file" />
+	</div>
+</div>
+
+	<p class="line">
+		<a id="ok">提交</a>
+	</p>
+
+	<div class="mycenter">
+		<img id="picShow" src="" alt=""/>
+	</div>
+
+</form>
+</div>
+
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/image-up.js"></script>
+<script src="js/feed.js"></script>
+</body>
+</html>
