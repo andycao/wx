@@ -48,25 +48,8 @@ $(document).ready(function(){
 		$('#file').trigger('click');
 	});
 
-	var form = document.getElementById("myform");
 	$('#ok').click(function(){
-
-		if( checkform(form) ) {
-			openApi({
-				api: "308",
-				mobile: form.mobile.value,
-				nick: form.nick.value,
-				desc: form.desc.value,
-				imgurl: imgurl
-			}, function (json) {
-				console.log('success');
-				//重置表单
-				form.reset();
-				alert("您的申请正在审核中...");
-				location.href = "index.html";
-
-			}, apiError, apiComplete);
-		}
+		submitForm();
 	});
 
 		//更改图片
@@ -84,6 +67,26 @@ $(document).ready(function(){
 				$("#picShow").show().attr("src", imgurl);
 			});
 		});
+
+	function submitForm(){
+		var form = document.getElementById("myform");
+		if( checkform(form) ) {
+			openApi({
+				api: "308",
+				mobile: form.mobile.value,
+				nick: form.nick.value,
+				desc: form.desc.value,
+				imgurl: imgurl
+			}, function (json) {
+				console.log('success');
+				//重置表单
+				form.reset();
+				alert("您的申请正在审核中...");
+				location.href = "index.html";
+
+			}, apiError, apiComplete);
+		}
+	}
 });
 
 function checkform(f){

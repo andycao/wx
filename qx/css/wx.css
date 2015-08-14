@@ -5,9 +5,16 @@ body{
     background-attachment: fixed !important;
     background-size: cover !important;
     font-family: MingLiU, 'Microsoft Yahei';
+
 }
 hr{
     border-top:1px solid #888;
+}
+a:focus{
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:none;
 }
 label{
     font-weight:500;
@@ -29,23 +36,26 @@ div.img-head img{
     width:100%;
 }
 
-.btn-cusflo{
-    color:#000;
-    background-color:#ffc000;
-    border-color:#ffce00;
-    width:91%;
-}
-.myform{
-    display:inline-table;
-    width:68%;
-}
 .my-label{
     min-width:6.6em;
 }
+.myinput{
+    background-color: transparent;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid#fff;
+    color:#fff;
+    margin-bottom:2em;
+    box-shadow:none;
+}
 
-.btn-upload{
-    width:91%;
-    margin:0 auto;
+.form-control:focus{
+}
+.uploadTag{
+    margin-top:3em;
+}
+#upload img{
+    width:4em;
 }
 .mycenter{
     text-align:center;
@@ -60,4 +70,20 @@ div.img-head img{
 #picShow{
     width:100%;
     display:none;
+}
+
+#orderLine{
+    margin-top:.3em;
+    width:80%;
+}
+.line{
+    margin: 3em auto;
+    text-align: center;
+}
+#ok{
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background-color: rgba(255,255,255,.2);
+    padding: .6em 6.6em;
 }
