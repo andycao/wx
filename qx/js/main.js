@@ -63,16 +63,57 @@ function addItem(list){
       html += '<img class="mainImg" src="' + entry.imgurl + '" alt=""/>';
     }
     html += '<p class="desc">' + entry.desc + '</p>';
-    html += '<p class="last"><span class="likes">' + entry.like + '</span><i class="button fa fa-thumbs-o-up"></i></p>' +
+    html += '<div class="last"><span class="likes">' + entry.like + '</span><i class="button fa fa-thumbs-o-up"></i></div>' +
     '</div>';
   });
 
   $("#show").append(html);
 }
 
+function isLocalStorageSupported() {
+  var testKey = 'test',
+      storage = window.sessionStorage;
+  try {
+    storage.setItem(testKey, 'testValue');
+    storage.removeItem(testKey);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function likedBefore(isLS){
+  if( isLS ){
+    //check num
+    var num = localStorage.getItem("alertNum");
+
+    //save the num to ls and alert message
+    var saveShow = function(num){
+      localStorage.setItem("alertNum", num );
+      alert('您已经赞过了^_^\n本消息会显示' + (6 - num) + '次');
+    };
+
+    if( !num ){
+      num = 1;
+      saveShow(num);
+    } else {
+      if( num < 5) {
+        num++;
+        saveShow(num);
+      }
+      //大与5次时什么都不显示
+    }
+
+  } else {
+    alert('您已经赞过了^_^');
+  }
+}
+
 (function($){
 
-	openApi({
+  var isLS = isLocalStorageSupported();
+
+  openApi({
 		api : "311"
 	},function(json){
     console.log(json);
@@ -86,6 +127,7 @@ function addItem(list){
 
     $("#show .last").unbind('click').click(function(event){
       event.stopPropagation();
+
       var id = $(this).parent().attr('id');
       var likes = $(this).children('.likes');
 
@@ -95,13 +137,14 @@ function addItem(list){
           id : id
         },function(json){
           var newLike = parseInt(json.data);
-          if( !Number.isNaN(newLike)){
 
+          //ios has problem here
+          //as isNaN is ES6 standard
+          if( newLike ){
             //改变like数量
             likes.text(newLike);
-
           } else {
-            alert('您已经赞过了^_^');
+            likedBefore(isLS);
           }
 
         }, apiError,function(){

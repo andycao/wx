@@ -47,7 +47,7 @@ div.img-present img{
     opacity:0;
     width:100%;
 }
-#show p{
+#show .desc, #show .last{
     color: #fff;
     text-shadow: none;
     padding: .2em .3em;
@@ -55,6 +55,16 @@ div.img-present img{
     margin: 0;
     font-family:MingLiU;
     font-size:.9em;
+}
+#show .desc{
+  display: block;
+  display: -webkit-box;
+  max-height: 13em;
+  margin: 0 auto;
+  -webkit-line-clamp: 9;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #show .item{
     margin:.4em .3em;
