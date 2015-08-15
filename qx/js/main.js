@@ -62,7 +62,8 @@ function addItem(list){
     if(entry.imgurl) {
       html += '<img class="mainImg" src="' + entry.imgurl + '" alt=""/>';
     }
-    html += '<p class="desc">' + entry.desc + '</p>'+
+    html += '<p class="desc">' + entry.desc + '</p>';
+    html += '<p class="last"><span class="likes">' + entry.like + '</span><i class="button fa fa-thumbs-o-up"></i></p>' +
     '</div>';
   });
 
@@ -74,6 +75,7 @@ function addItem(list){
 	openApi({
 		api : "311"
 	},function(json){
+    console.log(json);
 
 		addItem(json.data);
 
@@ -82,6 +84,35 @@ function addItem(list){
       window.location.href = "showOne.html?imgUrl=" + encodeURI(src);
     });
 
+    $("#show .last").unbind('click').click(function(event){
+      event.stopPropagation();
+      var id = $(this).parent().attr('id');
+      var likes = $(this).children('.likes');
+
+      if(id){
+        openApi({
+          api : "312",
+          id : id
+        },function(json){
+          var newLike = parseInt(json.data);
+          if( !Number.isNaN(newLike)){
+
+            //改变like数量
+            likes.text(newLike);
+
+          } else {
+            alert('您已经赞过了^_^');
+          }
+
+        }, apiError,function(){
+
+          //改变拇指形状
+          likes.next().removeClass("fa-thumbs-o-up").addClass("fa-thumbs-up");
+        });
+      }
+    });
+
+    //这个apiComplete 只在初始化时调用
 	},apiError,apiComplete);
 
   var btn = document.querySelector('#hiddenCopy');

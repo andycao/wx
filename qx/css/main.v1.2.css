@@ -53,8 +53,6 @@ div.img-present img{
     padding: .2em .3em;
     background-color: rgba(255,255,255,.2);
     margin: 0;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
     font-family:MingLiU;
     font-size:.9em;
 }
@@ -65,7 +63,14 @@ div.img-present img{
 #show .mainImg{
     width:100%;
 }
-
+#show .item .last{
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-align:right;
+}
+#show .likes, #show .button{
+  margin-right:.5em;
+}
 a:hover{
     text-decoration:none;
 }
