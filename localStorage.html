@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<h1>localStorage test</h1>
+<p id="result"></p>
+<script>
+  function isLocalStorageSupported() {
+    var testKey = 'test',
+        storage = window.sessionStorage;
+    try {
+      storage.setItem(testKey, 'testValue');
+      storage.removeItem(testKey);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  var result = document.getElementById("result");
+  if( isLocalStorageSupported() ){
+    var text = document.createTextNode("yes, localstorage");
+    result.appendChild(text);
+  } else{
+    var text = document.createTextNode("no, no localstorage");
+    result.appendChild(text);
+  }
+</script>
+</body>
+</html>

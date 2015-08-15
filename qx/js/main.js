@@ -53,32 +53,42 @@ function apiComplete(json){
 	});
 }
 
+
+function addItem(list){
+  var html = '';
+  list.forEach(function(entry, index){
+    html +=
+        '<div id="' + entry.id + '" class="item">';
+    if(entry.imgurl) {
+      html += '<img class="mainImg" src="' + entry.imgurl + '" alt=""/>';
+    }
+    html += '<p class="desc">' + entry.desc + '</p>'+
+    '</div>';
+  });
+
+  $("#show").append(html);
+}
+
 (function($){
 
 	openApi({
 		api : "311"
 	},function(json){
-		console.log("311");
-		console.log(json);
 
 		addItem(json.data);
 
+    $(".mainImg").unbind('click').click(function(){
+      var src = this.src;
+      window.location.href = "showOne.html?imgUrl=" + encodeURI(src);
+    });
+
 	},apiError,apiComplete);
 
+  var btn = document.querySelector('#hiddenCopy');
+  btn.addEventListener('click', function(event) {
+    window.prompt("请长按以复制",window.location.href);
 
-	function addItem(list){
-		var html = '';
-		list.forEach(function(entry, index){
-			 html +=
-				'<div id="' + entry.id + '" class="item">';
-					if(entry.imgurl) {
-						html += '<img class="mainImg" src="' + entry.imgurl + '" alt=""/>';
-					}
-				html += '<p class="desc">' + entry.desc + '</p>'+
-				'</div>';
-		});
+  });
 
-		$("#show").append(html);
-	}
 
 })(jQuery);
