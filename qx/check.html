@@ -17,6 +17,9 @@
 			border-radius: 1em;
 			padding: 1em;
 		}
+    .card input{
+      width:100%;
+    }
 		img:hover{
 			cursor:pointer;
 		}
@@ -30,6 +33,7 @@
 		<button id="passedList" class="btn btn-success" >通过列表</button>
 		<!--<button id="rejectedList" class="btn btn-danger" >未通过列表</button>-->
 	</p>
+  <p>通过列表 － 第三列写正数是加，负数是减</p>
 	<hr>
 	<div id="cardList">
 	</div>
@@ -86,6 +90,9 @@
 				console.log("311");
 				console.log(json);
 				addListNoButton(json.data);
+
+        applyChangeNum();
+
 			},apiError,apiComplete);
 		});
 
@@ -108,12 +115,16 @@
 		list.forEach(function(entry,index){
 			var html =
 				'<div class="card row">'+
-				'<div class="col-md-4">'+
+				'<div class="col-xs-4">'+
 				'<img src="' + entry.imgurl + '" alt=""/>'+
 				'</div>'+
-				'<div class="col-md-4">'+
+				'<div class="col-xs-4">'+
 				'<p class="desc">' + entry.desc + '</p>'+
 				'</div>'+
+        '<div class="col-xs-4"><p>赞:<span class="likeNum">' + entry.like + '</span></p>' +
+        '<p><input name="num" type="number" value="" /></p>'+
+        '<button class="btn btn-primary changeNum" id="' + entry.id + '">确定</button>'+
+        '</div>'
 				'</div>';
 
 			$("#cardList").append(html);
@@ -190,9 +201,27 @@
 			window.open(url);
 		});
 	}
-//	setInterval(function(){
-//		location.reload();
-//	}, 20000)
+
+  function applyChangeNum(){
+    $(".changeNum").unbind("click").click(function(){
+      var parentElement = $(this).parent();
+      var id = $(this).attr("id");
+      var num = parentElement.find("input[name='num']").val();
+      parentElement.find("input[name='num']").val("");
+      console.log(num);
+      if(id && num){
+        openApi({
+          api : 313,
+          id : id,
+          n : num
+        },function(json){
+          console.log(json);
+          parentElement.find(".likeNum").text(json.data);
+        },apiError,apiComplete);
+      }
+    });
+  }
+
 </script>
 </body>
 </html>
