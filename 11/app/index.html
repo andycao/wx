@@ -1,10 +1,11 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="">
   <head>
     <meta charset="utf-8">
-    <title>11</title>
+    <title>双11活动</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="http://7xjrtc.com2.z0.glb.qiniucdn.com/resource/css/font-awesome.min.css" />
 
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -24,49 +25,45 @@
   </head>
   <body>
     <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <p class="browsehappy"> 良好的体验，请使用更为 <a href="http://browsehappy.com/">现代的浏览器</a> </p>
     <![endif]-->
 
-
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="#/about">About</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">11</h3>
+    <div id="main">
+      <img src="images/banner.png" alt=""/>
+      <div class="rule">
+        <img src="images/guize.png" alt=""/>
       </div>
 
-      <div class="jumbotron">
-        <h1>'Allo, 'Allo!</h1>
-        <p class="lead">Always a pleasure scaffolding your apps.</p>
-        <p><a class="btn btn-lg btn-success" href="#">Splendid! <span class="glyphicon glyphicon-ok"></span></a></p>
-      </div>
+      <div id="shopList" role="tablist" aria-multiselectable="true">
 
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4><a href="https://html5boilerplate.com/">HTML5 Boilerplate</a></h4>
-          <p>HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.</p>
-
-          <h4><a href="http://libsass.org/">Sass</a></h4>
-          <p>Sass is a mature, stable, and powerful professional grade CSS extension language.</p>
-
-
-          <h4><a href="http://getbootstrap.com/">Bootstrap</a></h4>
-          <p>Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.</p>
-
-          <h4><a href="http://modernizr.com/">Modernizr</a></h4>
-          <p>Modernizr is an open-source JavaScript library that helps you build the next generation of HTML5 and CSS3-powered websites.</p>
-
+        <div id="citys">
+          <i class="fa fa-map-marker fa-6"></i>
+          <span>郑州</span>
         </div>
+
+        <div class="shopBlock">
+          <div class="shop" role="tab">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <img class="shopDemo" src="http://pc1.cusflo.com/1437238/card14449771129911.jpg-th320" alt=""/>
+                <h2>菩提净茶餐厅</h2>
+                <div><i class="fa fa-phone"></i>010-232323232</div>
+                <div><i class="fa fa-map-marker"></i>北京市朝阳区霄云路</div>
+                <div><span>浏览232323次</span>|<span>最低见面20元</span>|<span>当面付</span></div>
+
+                <div class="distance"><img src="images/car.png" alt=""/><100m</div>
+                <div class="arrow-right"></div>
+              </a>
+          </div>
+          <div id="collapseOne" class="collapse in" role="tabpanel">
+            <div class="">
+              sdfsfsdfsf
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
     </div>
-
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -90,19 +87,12 @@
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
     <!-- endbuild -->
 
+    <!--directive-->
+    <!--<script src="https://rawgit.com/flatiron/director/master/build/director.min.js"></script>-->
 
     <!-- build:js scripts/main.js -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='https://www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
   </body>
 </html>

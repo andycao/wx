@@ -1,0 +1,65 @@
+//border radius
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+//background shadow,
+@mixin ellipsis($color-center, $color-round) {
+  background-image: -webkit-radial-gradient(ellipse at center, $color-center, $color-round);
+  background-image: radial-gradient(ellipse at center, $color-center, $color-round);
+}
+
+//text-overflow elipsis
+@mixin text-overflow($line) {
+  -webkit-line-clamp: $line;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin text-overflow-oneline {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin breakpoint($point) {
+  @if $point == large {
+    @media (min-width: 64.375em) {
+      @content;
+    }
+  }
+  @else if $point == medium {
+    @media (min-width: 50em) {
+      @content;
+    }
+  }
+  @else if $point == small {
+    @media (min-width: 37.5em) {
+      @content;
+    }
+  }
+  @else if $point == es {
+    @media (min-width: 20em) {
+      @content;
+    }
+  }
+}
+
+@mixin abs-pos($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+}
+
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
