@@ -1,6 +1,7 @@
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 
 $color-red: #aa222c;
+$color-blue: #1764a3;
 $color-main: #333;
 
 $font-base: 'SimHei', 'Microsoft Yahei';
@@ -11,10 +12,18 @@ $base-size: 14px;
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
+
 body{
   color: $color-main;
   font-size: $base-size;
+
+  background: url(../images/bg.jpg) top;
+  background-repeat: repeat-y;
+  background-attachment: fixed !important;
+  background-size: 100% auto;
+  height: 100%;
 }
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -23,14 +32,9 @@ body{
 }
 
 #main{
-  background-image: url(../images/bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  height: 300rem;
+  width:100%;
   position:relative;
-
-
+  margin-bottom: 7rem;
   img{
     width:100%;
   }
@@ -38,7 +42,8 @@ body{
     margin-top: 1rem;
   }
   .rule{
-    width: 13rem;
+    width: 14rem;
+    height: 10rem;
     position: absolute;
     top: 16rem;
     left: .5rem;
@@ -46,7 +51,6 @@ body{
 }
 
 #shopList{
-
   width:95%;
   margin: 0 auto;
   margin-top: 8rem;
@@ -54,8 +58,10 @@ body{
   border: 3px solid $color-red;
   @include border-radius(.8rem);
 
+  background-color: rgba(255,255,255, 0.2);
+
   &:before {
-    $bgwidth: 14rem;
+    $bgwidth: 15rem;
     $bgheight: 6.4rem;
 
     background-image: url('../images/dingbu.png');
@@ -70,21 +76,25 @@ body{
 
   .shopBlock{
     .shop{
-        padding-left: 30%;
-        position: relative;
-        margin: .3rem 0;
+      padding-left: 28%;
+      position: relative;
+      border-bottom: 1px solid $color-red;
+      margin: .3rem .6rem;
+      padding-bottom: .3rem;
+      min-height: 8rem;
+
       a{
+        font-family: $font-base;
         color: $color-main;
         text-decoration: none;
-
         &:hover{
           color: $color-main;
         }
       }
       img.shopDemo{
 
-        width: 26%;
-        max-width: 28%;
+        width: 25%;
+        max-width: 25%;
         top: 5%;
         right: auto;
         bottom: auto;
@@ -100,22 +110,82 @@ body{
         margin: 0;
         font-size: 1.9rem;
       }
-      .distance{
-        width: 5rem;
-        @include abs-pos(0, 0, auto,auto);
-        img{
-          width:1rem;
-          display:inline-block;
+      .mobile, .address{
+        margin-top: .1rem;
+        i{
+          color:$color-blue;
+        }
+        span{
+          margin-left:.4rem;
         }
       }
-      .arrow-right{
-        @include abs-pos(1rem, 0);
+      .details{
+        margin-top: .6rem;
+        font-size: 1.1rem;
+        span{
+          color: $color-red;
+          margin: 0 .2rem;
+        }
+      }
+      .distance{
+        width: 6rem;
+        @include abs-pos(0, 0, auto,auto);
+        img{
+          width: 1.2rem;
+          display: inline-block;
+          margin-right: .3rem;
+          vertical-align: baseline;
+        }
+      }
+      .arrow-right,.arrow-down{
+        @include abs-pos(40%, 0);
       }
 
+    }
+
+    .cardList{
+      .card{
+        @extend .shop;
+        margin-top:0;
+        padding-left: 30%;
+        a{
+          h2{
+            font-size:1.6rem;
+          }
+          img.shopDemo{
+            left: 1rem;
+          }
+          .price{
+            position:relative;
+            .price_now{
+              font-size: 1.1rem;
+              color:$color-red;
+              >span{
+                font-size: 2rem;
+              }
+            }
+            .card_collect{
+              @include abs-pos(.4rem,0);
+            }
+          }
+        }
+      }
     }
   }
 }
 
+#myModal{
+  .modal-dialog{
+    margin-top: 7rem;
+  }
+
+  .modal-body{
+    .btn{
+      min-width: 8rem;
+    }
+  }
+
+}
 .arrow-right{
     width: 0;
     height: 0;
@@ -123,12 +193,19 @@ body{
     border-bottom: 10px solid transparent;
     border-left:10px solid $color-red;
 }
+.arrow-down{
+  width: 0;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-top: 10px solid $color-red;
+  border-left:10px solid transparent;
+}
 #citys{
   width: 5rem;
   padding-left: .4rem;
   position: absolute;
   right: 6px;
-  top: -2.2rem;
+  top: -2.8rem;
   background-color: $color-red;
   border: 3px solid $color-red;
   @include border-top-radius(5px);
@@ -139,7 +216,10 @@ body{
     -webkit-background-clip: text;
     display:inline;
   }
+}
 
+.city-select{
+  display:block;
 }
 
 /* Responsive: Portrait tablets and up */
