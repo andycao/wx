@@ -13,7 +13,7 @@
 }
 
 //text-overflow elipsis
-@mixin text-overflow($line) {
+@mixin multi-overflow($line) {
   -webkit-line-clamp: $line;
   display: -webkit-box;
   -webkit-box-orient: vertical;

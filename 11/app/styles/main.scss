@@ -5,6 +5,7 @@ $color-blue: #1764a3;
 $color-main: #333;
 
 $font-base: 'SimHei', 'Microsoft Yahei';
+$font-number: Arial, SimHei;
 
 $base-size: 14px;
 @import "mixin";
@@ -22,6 +23,7 @@ body{
   background-attachment: fixed !important;
   background-size: 100% auto;
   height: 100%;
+  font-family: $font-base;
 }
 
 .browsehappy {
@@ -79,7 +81,7 @@ body{
       padding-left: 28%;
       position: relative;
       border-bottom: 1px solid $color-red;
-      margin: .3rem .6rem;
+      margin: .4rem .6rem;
       padding-bottom: .3rem;
       min-height: 8rem;
 
@@ -109,14 +111,19 @@ body{
         font-family: $font-base;
         margin: 0;
         font-size: 1.9rem;
+        max-width: 80%;
+        @include text-overflow-oneline();
       }
       .mobile, .address{
         margin-top: .1rem;
+        max-width: 95%;
+        @include text-overflow-oneline();
         i{
           color:$color-blue;
         }
         span{
           margin-left:.4rem;
+          font-family: $font-number;
         }
       }
       .details{
@@ -128,8 +135,8 @@ body{
         }
       }
       .distance{
-        width: 6rem;
-        @include abs-pos(0, 0, auto,auto);
+        width: 7rem;
+        @include abs-pos(0, -1.4rem, auto,auto);
         img{
           width: 1.2rem;
           display: inline-block;
@@ -148,6 +155,7 @@ body{
         @extend .shop;
         margin-top:0;
         padding-left: 30%;
+        padding-top: .3rem;
         a{
           h2{
             font-size:1.6rem;
@@ -157,6 +165,7 @@ body{
           }
           .price{
             position:relative;
+            font-family: $font-number;
             .price_now{
               font-size: 1.1rem;
               color:$color-red;
@@ -164,9 +173,16 @@ body{
                 font-size: 2rem;
               }
             }
+            .price_before{
+              text-decoration: line-through;
+            }
             .card_collect{
               @include abs-pos(.4rem,0);
             }
+          }
+          .desc{
+            min-height:3.5rem;
+            @include multi-overflow(2);
           }
         }
       }
@@ -201,7 +217,7 @@ body{
   border-left:10px solid transparent;
 }
 #citys{
-  width: 5rem;
+  width: 6rem;
   padding-left: .4rem;
   position: absolute;
   right: 6px;
