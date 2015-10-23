@@ -222,7 +222,7 @@ module.exports = function (grunt) {
         src: [
           '<%= config.dist %>/scripts/{,*/}*.js',
           '<%= config.dist %>/styles/{,*/}*.css',
-          '<%= config.dist %>/images/{,*/}*.*',
+          //'<%= config.dist %>/images/{,*/}*.*',
           '<%= config.dist %>/styles/fonts/{,*/}*.*',
           '<%= config.dist %>/*.{ico,png}'
         ]
@@ -278,16 +278,10 @@ module.exports = function (grunt) {
     htmlmin: {
       dist: {
         options: {
-          collapseBooleanAttributes: true,
-          collapseWhitespace: true,
-          conservativeCollapse: true,
-          removeAttributeQuotes: true,
-          removeCommentsFromCDATA: true,
-          removeEmptyAttributes: true,
-          removeOptionalTags: true,
-          // true would impact styles with attribute selectors
-          removeRedundantAttributes: false,
-          useShortDoctype: true
+          removeComments: true,
+          collapseWhitespace:true,
+          //conservativeCollapse:true,
+          preserveLineBreaks:true
         },
         files: [{
           expand: true,
@@ -344,6 +338,11 @@ module.exports = function (grunt) {
           cwd: '.',
           src: 'bower_components/bootstrap-sass/assets/fonts/bootstrap/*',
           dest: '<%= config.dist %>'
+        },{
+          expand: true,
+          cwd: '.tmp/images',
+          dest: '<%= config.dist %>/images',
+          src: ['generated/*']
         }]
       }
     },

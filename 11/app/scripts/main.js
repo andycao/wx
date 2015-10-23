@@ -3,7 +3,7 @@
   var currentCity = "ZhengZhou";
 
   var cityCodeList = {zhengzhou : "ZhengZhou", luoyang : "LuoYang", haikou : "HaiKou"};
-  updateShopList("Shuang11", "BeiJing");
+  updateShopList( "Shuang11", cityCodeList.zhengzhou );
 
   function updateShopList(event, city){
     if(busy){
@@ -39,12 +39,12 @@
 
     }, apiError, function complete(){
       setAction();
-      if(city === cityCodeList.zhengzhou ){
-        $("#citys span").text("郑州");
+      if(city === cityCodeList.haikou ){
+        $("#citys span").text("海口");
       } else if(city === cityCodeList.luoyang ){
         $("#citys span").text("洛阳");
       } else{
-        $("#citys span").text("海口");
+        $("#citys span").text("郑州");
       }
       currentCity = city;
       busy = false;
