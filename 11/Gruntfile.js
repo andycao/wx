@@ -179,10 +179,17 @@ module.exports = function (grunt) {
           src: ['*.{scss,sass}'],
           dest: '.tmp/styles',
           ext: '.css'
-        }]
+        },{
+          expand: true,
+          cwd: '<%= config.app %>/styles',
+          src: ['rule.{scss,sass}'],
+          dest: 'dist/styles',
+          ext: '.css'
+        }
+        ]
       }
-    },
 
+    },
     postcss: {
       options: {
         map: true,
@@ -415,6 +422,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'browserSync:test',
+      'sass',
       'mocha'
     ]);
   });
@@ -429,6 +437,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'copy:dist',
+    'sass',
     'modernizr',
     'filerev',
     'usemin',

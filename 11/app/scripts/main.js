@@ -3,7 +3,7 @@
   var currentCity = "ZhengZhou";
 
   var cityCodeList = {zhengzhou : "ZhengZhou", luoyang : "LuoYang", haikou : "HaiKou"};
-  updateShopList( "Shuang11", cityCodeList.zhengzhou );
+  updateShopList( "Shuang11", "ZhengZhou" );
 
   function updateShopList(event, city){
     if(busy){
@@ -20,7 +20,6 @@
     };
 
     useCfApi(params, function succ(result){
-      console.log(result);
       //清除商店与卡券
       $("#shopList .shopBlock").remove();
 
@@ -28,7 +27,6 @@
 
       var html = '';
       shopList.forEach(function(entry){
-        console.log(entry);
         html += getShopBlockHtml(entry);
       });
 
@@ -107,8 +105,6 @@
       '</div>'+
       '</a>'+
       '</div>';
-
-
     return html;
   }
 
@@ -201,7 +197,7 @@ function calcShop(shop){
   list.forEach(function(entry){
     totalViews += entry.view;
 
-    if( (entry.price_before - entry.price_now) > bestDiscount){
+    if( (entry.price_before - entry.price_now) >= bestDiscount){
       bestDiscount = entry.price_before - entry.price_now;
       showQimgurl = entry.qimgurl;
     }
