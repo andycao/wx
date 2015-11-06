@@ -11,7 +11,7 @@ var useCfApi = function (objPrm, successCallback, errorCallback, completeCallbac
 		data: objPrm,
 		dataType: 'jsonp',
 		jsonp: "callback",
-		timeout: 3000, // sets timeout to 3 seconds
+		//timeout: 5000, // sets timeout to 3 seconds
 		success: function (json) {
 			if(successCallback){
 				successCallback(json);
@@ -31,8 +31,7 @@ var useCfApi = function (objPrm, successCallback, errorCallback, completeCallbac
 };
 
 function apiError(json){
-	console.error('api error:');
-	console.error(json);
+	console.log(json);
 }
 
 function apiComplete(json){
