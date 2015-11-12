@@ -3,7 +3,37 @@
   var currentCity = "ZhengZhou";
 
   var cityCodeList = {zhengzhou : "ZhengZhou", luoyang : "LuoYang", haikou : "HaiKou"};
-  updateShopList( "Shuang11", "ZhengZhou" );
+
+  getCity(function(){
+    updateShopList( "Shuang11", currentCity );
+  });
+
+  function getCity( callback ){
+    var params = {
+      api : '1002'
+    };
+
+    useCfApi(params, function succ(result){
+
+      console.log(result);
+      if( !result){
+        return ;
+      }
+      var city = result.data.dcity;
+      console.log( city);
+      if( city == '海口市'){
+        currentCity = cityCodeList.haikou;
+      } else if( city == '洛阳市'){
+        currentCity = cityCodeList.luoyang;
+      } else{
+        currentCity = cityCodeList.zhengzhou;
+      }
+    }, apiError, function complete(){
+      console.log('complete');
+      callback();
+    });
+
+  }
 
   function updateShopList(event, city){
     if(busy){
